@@ -5,40 +5,8 @@ var r = new Rune({
 	debug: true
 
 });
-
-/*//hexbeams - original
-var colorlist = [
-  new Rune.Color("#929292", 0.7),
-  new Rune.Color("#EAEAEA", 0.7),
-  new Rune.Color("#F8FBFF", 0.7),
-  new Rune.Color("#C0C0C0", 0.7),
-  new Rune.Color("#D5D5D5", 0.7),
-
-]
-
-//stadium1
-var colorlist = [
-  new Rune.Color("#952519", 0.7),
-  new Rune.Color("#D9DBC3", 0.7),
-  new Rune.Color("#4E150A", 0.7),
-  new Rune.Color("#4842A4", 0.7),
-  new Rune.Color("#010318", 0.7),
-]
-
-
-//stadium2
-var colorlist = [
-  new Rune.Color("#952519", 0.7),
-  new Rune.Color("#D9DBC3", 0.7),
-  new Rune.Color("#4E150A", 0.7),
-  new Rune.Color("#4842A4", 0.7),
-  new Rune.Color("#010318", 0.7),
-]
-
-*/
 //colors for cocoon
 var colorlist = [
- // new Rune.Color("#7AB7FA", 0.7),
   new Rune.Color("#B7E6FA", 0.7),
   new Rune.Color("#4F5D6A", 0.7),
   new Rune.Color("#8A9EC3", 0.7),
@@ -60,6 +28,11 @@ var hexagon = r.path(0,5)
   .lineTo(0, b)
   .stroke(false)
   .fill("#7AB7FA")
+    .closePath()
+  .moveTo(0,0)
+  .lineTo(200,0)
+  .lineTo(200,200)
+  .lineTo(0,200)
   .closePath()
 
 
@@ -109,12 +82,20 @@ r.line(r.width,20,0,r.height)
 .stroke(255)
 .strokeWidth(8)
 
+//second shape to 'mask' the lines extending beyond the hexagon
+ var hex2 = hexagon
+  .copy()
+  .moveTo(0,0)
+  .fill(255)
+  .fillRule('evenodd')
+
 r.text("ROARK&KEATING", r.width/2, r.height-5)
   .fill(0)
   .stroke(false)
   .fontSize(18)
   .textAlign("center")
   .fontFamily("Bebas Kai")
+
 r.draw();
 
 
